@@ -6,7 +6,6 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const cors = require('cors')
 const trunks = require('trunks-log')
-
 const app = express();
 
 app.use(cors())
@@ -18,9 +17,9 @@ const { webRoutes } = require('./src/routes/index')
 
 // Use native ES6 Promises since mongoose's are deprecated.
 mongoose.Promise = global.Promise
-
+var MONGO_URI="mongodb://rsteen:Rs102076@ds125293.mlab.com:25293/greentree"
 // Connect to the database
-mongoose.connect(process.env.MONGO_URI, { useMongoClient: true })
+mongoose.connect(MONGO_URI, { useMongoClient: true })
 
 // Fail on connection error.
 mongoose.connection.on('error', error => { throw error })
