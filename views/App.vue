@@ -91,12 +91,18 @@ export default {
           title: "Users",
           href: "/#/users",
           router: true
+        },
+        {
+          icon: "calendar_today",
+          title: "Schedule",
+          href: "/#/schedules",
+          router: true
         }
       ],
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: "MEVN Stack Client",
+      title: "Green Tree",
       alertOpen: false,
       alertString: '',
       alertSuccess: false,

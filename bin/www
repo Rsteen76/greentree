@@ -5,7 +5,7 @@
  */
 
 var app = require('../app');
-var debug = require('debug')('mean-training:server');
+var debug = require('debug')('greentree:server');
 var http = require('http');
 
 /**

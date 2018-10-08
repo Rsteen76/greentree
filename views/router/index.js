@@ -3,6 +3,7 @@ import Router from 'vue-router'
 
 import usersPage from '../pages/users.vue'
 import homePage from '../pages/home.vue'
+import schedulesPage from '../components/scheduleList.vue'
 
 Vue.use(Router)
 
@@ -23,6 +24,11 @@ const router = new Router ({
     {
       path: '/',
       redirect: '/home'
+    },
+    {
+      path: '/schedules',
+      name: 'schedules',
+      component: schedulesPage
     }
   ]
 })
