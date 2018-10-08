@@ -3,14 +3,20 @@ import Router from 'vue-router'
 
 import usersPage from '../pages/users.vue'
 import homePage from '../pages/home.vue'
+import greenTree from '../pages/greentree.vue'
 import schedulesPage from '../components/scheduleList.vue'
 
 Vue.use(Router)
 
 const router = new Router ({
-  root: '/home',
+  root: '/greentree',
   routes: 
   [
+    {
+      path: '/',
+      name: 'greentree',
+      component: greenTree
+    },
     {
       path: '/users',
       name: 'users',
@@ -20,10 +26,6 @@ const router = new Router ({
       path: '/home',
       name: 'home',
       component: homePage
-    },
-    {
-      path: '/',
-      redirect: '/home'
     },
     {
       path: '/schedules',

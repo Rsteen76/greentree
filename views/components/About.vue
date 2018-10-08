@@ -1,26 +1,32 @@
 <template>
-    <div class="about align-center">
-        <b-container class="p-4" bg-variant="secondary">
-        <b-card title="Card Title"
-            img-src="https://picsum.photos/600/300/?image=25"
-            img-alt="Image"
-            img-top
-            tag="article"
-            style="max-width: 80rem; max-height: 85vh;"
-            class="Text center">
-        <h4 slot="header">About Us</h4>
-        <p class="card-text">
-        Some quick example text to build on the card title and make up the bulk of the card's content.
-        </p>
-        <b-button href="#" variant="primary">Go somewhere</b-button>
-        </b-card>
-        </b-container>
-    </div>
+  <v-layout>
+    <v-flex xs12 sm6 offset-sm3>
+      <v-card>
+        <v-img
+          class="white--text"
+          height="200px"
+          src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
+        >
+          <v-container fill-height fluid>
+            <v-layout fill-height>
+              <v-flex xs12 align-end flexbox>
+                <span class="headline">Top 10 Australian beaches</span>
+              </v-flex>
+            </v-layout>
+          </v-container>
+        </v-img>
+        <v-card-title>
+          <div>
+            <span class="grey--text">Number 10</span><br>
+            <span>Whitehaven Beach</span><br>
+            <span>Whitsunday Island, Whitsunday Islands</span>
+          </div>
+        </v-card-title>
+        <v-card-actions>
+          <v-btn flat color="orange">Share</v-btn>
+          <v-btn flat color="orange">Explore</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-flex>
+  </v-layout>
 </template>
-
-
-<script>
-export default {
-  name: "About"
-};
-</script>

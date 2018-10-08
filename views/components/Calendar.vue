@@ -1,23 +1,26 @@
 <template>
-    <div class="about">
-        <b-container class="p-4" bg-variant="secondary">
-        <b-card-group deck>
-        <b-card title="Card Title"
-            img-src="https://picsum.photos/600/300/?image=25"
-            img-alt="Image"
-            img-top
-            tag="article"
-            style="max-width: 80rem;"
-            class="text center">
-        <h4 slot="header">About Us</h4>
-        <p class="card-text">
-        Some quick example text to build on the card title and make up the bulk of the card's content.
-        </p>
-        <b-button href="#" variant="primary">Go somewhere</b-button>
-        </b-card>
-        </b-card-group>
-        </b-container>
-    </div>
+  <v-layout>
+    <v-flex xs12 sm6 offset-sm3>
+      <v-card>
+        <v-img
+          src="https://cdn.vuetifyjs.com/images/cards/desert.jpg"
+          aspect-ratio="2.75"
+        ></v-img>
+
+        <v-card-title primary-title>
+          <div>
+            <h3 class="headline mb-0">Kangaroo Valley Safari</h3>
+            <div>Located two hours south of Sydney in the <br>Southern Highlands of New South Wales, ...</div>
+          </div>
+        </v-card-title>
+
+        <v-card-actions>
+          <v-btn flat color="orange">Share</v-btn>
+          <v-btn flat color="orange">Explore</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-flex>
+  </v-layout>
 </template>
 
 
