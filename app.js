@@ -17,12 +17,14 @@ const { webRoutes } = require('./src/routes/index')
 
 // Use native ES6 Promises since mongoose's are deprecated.
 mongoose.Promise = global.Promise
-// var MONGO_URI="mongodb://rsteen:Rs102076@ds125293.mlab.com:25293/greentree"
+
 // Connect to the database
-mongoose.connect(process.env.MONGO_URI)
+mongoose.connect(process.env.MONGO_URI, { useMongoClient: true }, () => {
+  console.log("DB is connected");
+});
 
 // Fail on connection error.
-mongoose.connection.on('error', error => { throw error })
+mongoose.connection.on('error', error => { throw error });
 
 
 // uncomment after placing your favicon in /public
