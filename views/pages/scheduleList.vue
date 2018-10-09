@@ -129,7 +129,7 @@ export default {
             Object.keys(schedule).forEach(key =>  {
                 this.scheduleToEdit[key] = schedule[key];
             });
-            this.editName = schedule.name;
+            this.editDate = schedule.date;
             this.editDialog = true;
         },
 
