@@ -28,7 +28,8 @@
     "vue": "^2.5.17",
     "vue-router": "^3.0.1",
     "vue-sticky-js": "0.0.4",
-    "vuetify": "^1.2.6"
+    "vuetify": "^1.2.6",
+     "webpack": "^3.12.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
