@@ -19,7 +19,7 @@ const { webRoutes } = require('./src/routes/index')
 mongoose.Promise = global.Promise
 // var MONGO_URI="mongodb://rsteen:Rs102076@ds125293.mlab.com:25293/greentree"
 // Connect to the database
-mongoose.connect(process.env.MONGO_URI, { useMongoClient: true })
+mongoose.connect(process.env.MONGO_URI)
 
 // Fail on connection error.
 mongoose.connection.on('error', error => { throw error })
