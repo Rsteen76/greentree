@@ -6,7 +6,6 @@
     "node": "8.12.X"
   },
   "scripts": {
-    "heroku-postbuild": "webpack -p",
     "start": "node -r dotenv/config ./bin/www",
     "dev:serve": "nodemon -r dotenv/config ./bin/www",
     "dev:client": "webpack-dev-server --port 3000 --open --inline --hot --content-base ./views",
