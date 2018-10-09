@@ -21,7 +21,7 @@ exports.index = async (req, res) => {
 //Store a new schedule
 exports.store = async (req, res) => {
   
-  let schedule = new schedule(req.body)
+  let schedule = new Schedule(req.body)
 
   //save it in the DB
   await schedule.save()

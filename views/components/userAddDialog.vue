@@ -1,9 +1,7 @@
 <template>
-
-
     <v-card>
       <v-toolbar class="primary primaryText--text">
-        <v-toolbar-title > Add a Schedule </v-toolbar-title>
+      <v-toolbar-title > Add a User </v-toolbar-title>
       </v-toolbar>
       <v-container fluid>
         <v-card-text>
