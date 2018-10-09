@@ -1,5 +1,5 @@
 .env
-/public/build.js
+
 .DS_Store
 node_modules/
 

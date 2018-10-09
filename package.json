@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
+    "postinstall": "npm run build",
     "start": "node -r dotenv/config ./bin/www",
     "dev:serve": "nodemon -r dotenv/config ./bin/www",
     "dev:client": "webpack-dev-server --port 3000 --open --inline --hot --content-base ./views",

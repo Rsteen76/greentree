@@ -34,7 +34,7 @@
                   </tr>
                 </template>
                 <template slot="items" slot-scope="props">
-                  <tr :active="props.selected" @click="props.selected = !props.selected">
+                  <tr>
                     <td>{{ props.item.name }}</td>
                     <td class="text-xs-center">{{ props.item.date }}</td>
                     <td class="text-xs-center">{{ props.item.location }}</td>
@@ -45,18 +45,24 @@
                     <td class="text-xs-center">{{ props.item.nursery }}</td>
                     <td class="text-xs-center">{{ props.item.logistics }}</td>
                     <td class="justify-center layout px-0">
-                      <v-dialog v-model="deleteDialog" lazy absolute max-width="50%">
-                        <v-btn class="primaryText--text" icon slot="activator"> 
-                        <v-icon small class="mr-2" @click="setupEdit(props.item)">
-                        edit
+                      
+                      <v-dialog v-model="editDialog" lazy absolute max-width="50%">
+                        <v-btn class="" icon slot="activator"> 
+                        <v-icon small class="" @click="setupEdit(props.item)">
+                        edit 
                       </v-icon>
                       </v-btn>
-                      <deleteSchedule @close="addDialog = false" @alert="alert"></deleteSchedule>
+                      <editSchedule :schedule="scheduleToDelete" @closeDelete="deleteDialog = false" @alert="alert"></editSchedule>
                       </v-dialog>
                       
-                      <v-icon small @click="setupDelete(props.item)">
-                        delete
+                      <v-dialog v-model="deleteDialog" lazy absolute max-width="50%">
+                        <v-btn class="" icon slot="activator"> 
+                        <v-icon small class="mr-1" @click="setupDelete(props.item)">
+                        delete 
                       </v-icon>
+                      </v-btn>
+                      <deleteSchedule :schedule="scheduleToDelete" @closeDelete="deleteDialog = false" @alert="alert"></deleteSchedule>
+                      </v-dialog>
                     </td>
                   </tr>
                 </template>
@@ -75,6 +81,7 @@
 import { http } from "../config/http.js"
 import addSchedule from "../components/addSchedule.vue"
 import deleteSchedule from "../components/deleteSchedule.vue"
+import editSchedule from "../components/editSchedule.vue"
 
 export default {
     data: () => ({
@@ -101,7 +108,8 @@ export default {
     }),
     components: {
       addSchedule: addSchedule,
-      deleteSchedule: deleteSchedule
+      deleteSchedule: deleteSchedule,
+      editSchedule: editSchedule
     },
 
     methods: {
