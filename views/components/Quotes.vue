@@ -1,5 +1,5 @@
 <template>
-  <v-carousel hide-delimiters>
+  <v-carousel id="carousel" hide-delimiters>
     <v-carousel-item
       v-for="(item,i) in items"
       :key="i"
@@ -33,10 +33,10 @@
   }
 </script>
 <style lang="stylus">
-  #example-custom-transition
+  #carousel
     .fade
       &-enter-active, &-leave-active, &-leave-to
-        transition: .3s ease-out
+        transition: .9s ease-out
         position: absolute
         top: 0
         left: 0

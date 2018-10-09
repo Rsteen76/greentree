@@ -1,6 +1,5 @@
 <template>
   <v-container class="pa-0">
-    <Nav/>
     <v-container>
       <template>
         <v-layout row>
@@ -39,12 +38,9 @@
 </template>
 
 <script>
-import Nav from "../components/Nav.vue"
 
 export default {
-  components: {
-    Nav
-  },
+
   data: () => ({
     value: "",
     num1: 0,

@@ -1,49 +1,26 @@
 <template>
-  <div class="home">
-    <Hero2 />
-    <Nav />
-    <div class="bgimg-1">
-      <div>
-        <About />
-      </div>
-    </div>
-    <div class="bgimg-2">
-      <div>
-        <Quotes />
-      </div>
-    </div>
-    <div class="bgimg-3">
-      <div>
-        <Children />
-      </div>
-    </div>
-    <div class="bgimg-1">
-      <div>
-        <Calendar />
-      </div>
-    </div>
-  </div>
+<router-view></router-view>
 </template>
 
 <script>
 // @ is an alias to /src
-import Nav from '../views/components/Nav.vue'
-import Hero2 from '../views/components/Hero2.vue'
-import About from '../views/components/About.vue'
-import Quotes from '../views/components/Quotes.vue'
-import Children from '../views/components/Children.vue'
-import Calendar from '../views/components/Calendar.vue'
+// import Nav from '../components/Nav.vue'
+// import Hero2 from '../components/Hero2.vue'
+// import About from '../components/About.vue'
+// import Quotes from '../components/Quotes.vue'
+// import Children from '../components/Children.vue'
+// import Calendar from '../components/Calendar.vue'
 
 export default {
   name: 'home',
-  components: {
-    Nav,
-    Hero2,
-    About,
-    Quotes,
-    Children,
-    Calendar
-  }
+  // components: {
+  //   Nav,
+  //   Hero2,
+  //   About,
+  //   Quotes,
+  //   Children,
+  //   Calendar
+  // }
 }
 </script>
 <style>
