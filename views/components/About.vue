@@ -3,25 +3,17 @@
     <v-flex xs12 sm6 offset-sm3>
       <v-card>
         <v-img
-          class="white--text"
-          height="200px"
-          src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
-        >
-          <v-container fill-height fluid>
-            <v-layout fill-height>
-              <v-flex xs12 align-end flexbox>
-                <span class="headline">Top 10 Australian beaches</span>
-              </v-flex>
-            </v-layout>
-          </v-container>
-        </v-img>
-        <v-card-title>
+          src="https://cdn.vuetifyjs.com/images/cards/desert.jpg"
+          aspect-ratio="2.75"
+        ></v-img>
+
+        <v-card-title primary-title>
           <div>
-            <span class="grey--text">Number 10</span><br>
-            <span>Whitehaven Beach</span><br>
-            <span>Whitsunday Island, Whitsunday Islands</span>
+            <h3 class="headline mb-0">About Us</h3>
+            <div>Located two hours south of Sydney in the <br>Southern Highlands of New South Wales, ...</div>
           </div>
         </v-card-title>
+
         <v-card-actions>
           <v-btn flat color="orange">Share</v-btn>
           <v-btn flat color="orange">Explore</v-btn>
@@ -30,3 +22,13 @@
     </v-flex>
   </v-layout>
 </template>
+
+<script>
+  export default {
+    data () {
+      return {
+        card_text: 'Lorem ipsum dolor sit amet, brute iriure accusata ne mea. Eos suavitate referrentur ad, te duo agam libris qualisque, utroque quaestio accommodare no qui. Et percipit laboramus usu, no invidunt verterem nominati mel. Dolorem ancillae an mei, ut putant invenire splendide mel, ea nec propriae adipisci. Ignota salutandi accusamus in sed, et per malis fuisset, qui id ludus appareat.'
+      }
+    }
+  }
+</script>

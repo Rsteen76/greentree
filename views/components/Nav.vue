@@ -1,5 +1,6 @@
 <template>
-  <v-toolbar>
+<div class="">
+  <v-toolbar id="navbar" dense :fixed=false >
     <v-toolbar-side-icon></v-toolbar-side-icon>
     <v-toolbar-title>Title</v-toolbar-title>
     <v-spacer></v-spacer>
@@ -9,39 +10,48 @@
       <v-btn flat>Link Three</v-btn>
     </v-toolbar-items>
   </v-toolbar>
+</div>
 </template>
+
 <script>
   export default {
-    data () {
+    name: 'Component',
+
+    data() {
       return {
-        items: [
-          {
-            src: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg'
-          },
-          {
-            src: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg'
-          },
-          {
-            src: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg'
-          },
-          {
-            src: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg'
-          }
-        ]
+        navbar: document.getElementById("navbar"),
+        sticky: false
+      };
+    },
+    methods: {
+      handleScroll () {
+
+        this.scrolled = window.scrollY > 0;
+        console.log(navbar);
+        console.log(navbar.getBoundingClientRect());
+        if (navbar(screenY) <= 0) {
+          this.sticky="false";
+        } else {
+          this.sticky="false";
+        }
+        
+      },
+      myFunction() {
+        
       }
+    },
+    created: function() {
+    window.addEventListener('scroll', this.handleScroll);
+    },
+    destroyed: function () {
+    window.removeEventListener('scroll', this.handleScroll);
     }
-  }
+
+  };
 </script>
 
 <style lang="stylus">
-  #example-custom-transition
-    .fade
-      &-enter-active, &-leave-active, &-leave-to
-        transition: .3s ease-out
-        position: absolute
-        top: 0
-        left: 0
 
-      &-enter, &-leave, &-leave-to
-        opacity: 0
+
+
 </style>

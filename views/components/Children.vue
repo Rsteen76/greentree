@@ -1,28 +1,35 @@
 <template>
-    <div class="about">
-        <b-container class="p-4" bg-variant="secondary">
-        <b-card-group deck>
-        <b-card title="Card Title"
-            img-src="https://picsum.photos/600/300/?image=25"
-            img-alt="Image"
-            img-top
-            tag="article"
-            style="max-width: 80rem; max-height: 85vh;"
-            class="text center">
-        <h4 slot="header">Childen's Ministry</h4>
-        <p class="card-text">
-        Some quick example text to build on the card title and make up the bulk of the card's content.
-        </p>
-        <b-button href="#" variant="primary">Go somewhere</b-button>
-        </b-card>
-        </b-card-group>
-        </b-container>
-    </div>
+  <v-layout>
+    <v-flex xs12 sm6 offset-sm3>
+      <v-card>
+        <v-img
+          src="https://cdn.vuetifyjs.com/images/cards/desert.jpg"
+          aspect-ratio="2.75"
+        ></v-img>
+
+        <v-card-title primary-title>
+          <div>
+            <h3 class="headline mb-0">Childrens Ministry</h3>
+            <div>Located two hours south of Sydney in the <br>Southern Highlands of New South Wales, ...</div>
+          </div>
+        </v-card-title>
+
+        <v-card-actions>
+          <v-btn flat color="orange">Share</v-btn>
+          <v-btn flat color="orange">Explore</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-flex>
+  </v-layout>
 </template>
 
 
 <script>
-export default {
-  name: "Children"
-};
+  export default {
+    data () {
+      return {
+        card_text: 'Lorem ipsum dolor sit amet, brute iriure accusata ne mea. Eos suavitate referrentur ad, te duo agam libris qualisque, utroque quaestio accommodare no qui. Et percipit laboramus usu, no invidunt verterem nominati mel. Dolorem ancillae an mei, ut putant invenire splendide mel, ea nec propriae adipisci. Ignota salutandi accusamus in sed, et per malis fuisset, qui id ludus appareat.'
+      }
+    }
+  }
 </script>
