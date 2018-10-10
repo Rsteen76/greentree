@@ -1,5 +1,5 @@
 import axios from 'axios'
 
 export const http = axios.create({
-  baseURL: process.env.BASEURL, //base URL goes here
+  baseURL: 'https://dry-earth-62210.herokuapp.com/api', //base URL goes here
 })
