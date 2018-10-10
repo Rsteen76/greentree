@@ -1,25 +1,27 @@
-import express, { static } from 'express';
-import { join } from 'path';
-import favicon from 'serve-favicon';
-import cookieParser from 'cookie-parser';
-import { json, urlencoded } from 'body-parser';
-import { Promise, connect, connection } from 'mongoose';
-import cors from 'cors';
-import trunks from 'trunks-log';
+const express = require('express');
+const path = require('path');
+const favicon = require('serve-favicon');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const cors = require('cors')
+const trunks = require('trunks-log')
 const app = express();
 
 app.use(cors())
 const logs = new trunks('', 'yellow', '')
 
 // const index = require('./src/routes/index');
-import { apiRoutes } from './src/routes/index';
-import { webRoutes } from './src/routes/index';
+const { apiRoutes } = require('./src/routes/index')
+const { webRoutes } = require('./src/routes/index')
+
 
 // Use native ES6 Promises since mongoose's are deprecated.
-Promise = global.Promise
+mongoose.Promise = global.Promise
+
 
 // Connect to the database
-connect(process.env.MONGO_URI, { useMongoClient: true }, () => {
+mongoose.connect(process.env.MONGO_URI, { useMongoClient: true }, () => {
   console.log("DB is connected");
 });
 
@@ -29,10 +31,11 @@ connection.on('error', error => { throw error });
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(json());
-app.use(urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(static(join(__dirname + 'public')));
+app.use(express.static(path.join(__dirname, 'public')));
+
 
 app.use('/api', apiRoutes);
 app.use('/web', webRoutes);
@@ -52,7 +55,7 @@ app.use(function(err, req, res, next) {
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 });
 
-export default app;
+module.exports = app;
 
 
 logs.success('App running on http://localhost:{}', process.env.PORT)
