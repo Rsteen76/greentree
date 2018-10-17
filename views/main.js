@@ -3,9 +3,9 @@ import App from './App.vue'
 import Vuetify from 'vuetify'
 import router from './router'
 import './stylus/main.styl'
-import VueSticky from 'vue-sticky-js'
+import VueSwal from 'vue-swal'
 
-Vue.use(VueSticky.install);
+Vue.use(VueSwal)
 Vue.use(Vuetify, {
   theme: {
     primary: '#0D47A1', //Main color

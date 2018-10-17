@@ -23,4 +23,10 @@ router.delete('/:id', catchErrors(usersController.delete))
 //update a boy
 router.put('/:id', catchErrors(usersController.update))
 
+//register a user
+router.post('/register', catchErrors(usersController.register))
+
+//login a user
+router.post('/login', catchErrors(usersController.login))
+
 module.exports = router

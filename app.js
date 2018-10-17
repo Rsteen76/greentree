@@ -1,12 +1,23 @@
-const express = require('express');
-const path = require('path');
-const favicon = require('serve-favicon');
-const cookieParser = require('cookie-parser');
-const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
-const cors = require('cors')
-const trunks = require('trunks-log')
-const app = express();
+const express             = require('express');
+const path                = require('path');
+const favicon             = require('serve-favicon');
+const cookieParser        = require('cookie-parser');
+const bodyParser          = require('body-parser');
+const mongoose            = require('mongoose');
+const cors                = require('cors')
+const morgan              = require('morgan');
+const trunks              = require('trunks-log')
+const fs                  = require('fs');
+const jwt                 = require('jsonwebtoken');
+const passport            = require('passport');
+const passportJWT         = require('passport-jwt');
+const ExtractJwt          = passportJWT.ExtractJwt;
+const JwtStrategy         = passportJWT.Strategy;
+const jwtOptions          = {}
+jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeaderWithScheme('jwt');
+jwtOptions.secretOrKey    = 'movieratingapplicationsecretkey';
+const app                 = express();
+
 
 app.use(cors())
 const logs = new trunks('', 'yellow', '')
@@ -28,9 +39,17 @@ mongoose.connect(process.env.MONGO_URI, { useMongoClient: true }, () => {
 // Fail on connection error.
 mongoose.connection.on('error', error => { throw error });
 
+// Include controllers
+// fs.readdirSync("controllers").forEach(function (file) {
+//   if(file.substr(-3) == ".js") {
+//     const route = require("../src/controllers/" + file)
+//     route.controller(app)
+//   }
+// })
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(morgan('combined'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());

@@ -1,29 +1,35 @@
-//import mongoose, our ODM for mongoDB
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+const bcryptjs = require('bcryptjs');
 
-//Define all of its fields, like columns of a SQL table
-const definition = {
-  name: {
-    type: String,
-    required: true
-  },
-  age: {
-    type: Number,
-    required: true
-  },
-  email: {
-    type: String,
-    required: true
-  }
-}
+const Schema = mongoose.Schema;
+const UserSchema = new Schema({
+  name: String,
+  email: String,
+  password: String,
+});
 
-//Set any options for the schema
-const options = {
-  timestamps: true
-}
+const User = mongoose.model('User', UserSchema);
+module.exports = User;
 
-//make the schema as a new instance of a mongoose schema, using our definition and options
-const userSchema = new mongoose.Schema(definition, options)
+module.exports.createUser = (newUser, callback) => {
+    bcryptjs.genSalt(10, (err, salt) => {
+      bcryptjs.hash(newUser.password, salt, (error, hash) => {
+        // store the hashed password
+        const newUserResource = newUser;
+        newUserResource.password = hash;
+        newUserResource.save(callback);
+      });
+    });
+  };
 
-//export that boye
-module.exports = mongoose.model('User', userSchema)
+  module.exports.getUserByEmail = (email, callback) => {
+    const query = { email };
+    User.findOne(query, callback);
+  };
+
+  module.exports.comparePassword = (candidatePassword, hash, callback) => {
+    bcryptjs.compare(candidatePassword, hash, (err, isMatch) => {
+      if (err) throw err;
+      callback(null, isMatch);
+    });
+  };
