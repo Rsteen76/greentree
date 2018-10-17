@@ -40,7 +40,7 @@ export default {
   methods: {
     submit() {
       http
-        .login("/users/login", this.user)
+        .post("/users/login", this.user)
         .then((response) => {
             window.localStorage.setItem('auth', response.data.token);
             this.$swal('Great!', 'You are ready to start!', 'success');
