@@ -9,8 +9,8 @@ const { catchErrors } = require('../middleware/error-handler')
 //set up the router
 const router = express.Router()
 
-//get all users
-router.get('/', passport.authenticate('jwt', { session: false }), catchErrors(usersController.index))
+//get all users //passport.authenticate('jwt', { session: false }),
+router.get('/',  catchErrors(usersController.index))
 
 //make a new boy
 router.post('/', catchErrors(usersController.store))

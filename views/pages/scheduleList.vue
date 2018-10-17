@@ -113,7 +113,6 @@ export default {
     },
 
     methods: {
-
         //Load all schedules from database
         load() {
             http
@@ -150,39 +149,5 @@ export default {
     mounted() {
         this.load();
     }
-    // data () {
-    //     return {
-    //         schedule: {
-    //             date: { label: "Date", class: "text-center" },
-    //             location: { label: "Location", },
-    //             meetingLeader: { label: "Meeting Leader" },
-    //             worshipLeader: { label: "Worship Leader" },
-    //             teacher: { label: "Teacher" },
-    //             busyBees: { label: "Busy Bees" },
-    //             nursery: { label: "Nursery" },
-    //             logistics: { label: "Logistics" },
-    //             actions: { label: 'Action', 'class': 'text-center' }
-    //         },
-    //         schedules: [],
-    //         errors: []
-    //     }
-    // },
-    // created() {
-    //     axios.get("http://localhost:8080/schedule")
-    //     .then(response => {
-    //         this.schedules = response.data
-    //     })
-    //     .catch(e => {
-    //         this.errors.push(e)
-    //     })
-    // },
-    // methods: {
-    //     details (schedule) {
-    //         this.$router.push({
-    //             name: "EditSchedule",
-    //             params: { id: schedule._id }
-    //         })
-    //     }
-    // }
 }
 </script>

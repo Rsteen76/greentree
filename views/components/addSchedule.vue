@@ -37,7 +37,7 @@
         </v-form>
 
         <v-card-actions>
-          <v-btn @click="submit()" class="green lighten-1 white--text" :loading="!submitDone">Submit</v-btn>
+          <v-btn @click="btnsubmit()" class="green lighten-1 white--text" :loading="!submitDone">Submit</v-btn>
           <v-spacer></v-spacer>
           <v-btn @click="close()" class="red white--text">Close</v-btn>
         </v-card-actions>
@@ -73,7 +73,7 @@ export default {
   },
 
   methods: {
-    submit() {
+    btnsubmit() {
       this.submitDone = false
         console.log(this.schedule)
 

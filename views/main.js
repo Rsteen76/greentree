@@ -4,7 +4,9 @@ import Vuetify from 'vuetify'
 import router from './router'
 import './stylus/main.styl'
 import VueSwal from 'vue-swal'
+import moment from 'moment'
 
+Vue.use(moment)
 Vue.use(VueSwal)
 Vue.use(Vuetify, {
   theme: {

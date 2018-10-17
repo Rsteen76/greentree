@@ -1,7 +1,7 @@
 <template>
   <div class="home">
+    <Nav/>
     <Hero2 />
-    <Nav />
     <div class="bgimg-1">
       <div>
         <About />
@@ -94,6 +94,11 @@ h3 {
   font: 20px "Lato", sans-serif;
   color: #111;
 }
+.sticky {
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 0;
+}
 
 /* Turn off parallax scrolling for tablets and phones */
 /* @media only screen and (max-device-width: 1024px) {
@@ -101,5 +106,9 @@ h3 {
         background-attachment: scroll;
     }
 } */
-
+.topnavs {
+  position: -webkit-sticky;
+  position: sticky !important;
+  top: 0;
+}
 </style>

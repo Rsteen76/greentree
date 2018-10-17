@@ -1,35 +1,63 @@
 <template>
-  <v-layout>
-    <v-flex xs12 sm6 offset-sm3>
-      <v-card>
-        <v-img
-          src="https://cdn.vuetifyjs.com/images/cards/desert.jpg"
-          aspect-ratio="2.75"
-        ></v-img>
+  <v-container>
+    <v-layout row wrap>
+      <v-flex xs12  mb-3>
+        <v-expansion-panel popout>
+          <v-expansion-panel-content
+            v-for="(schedule,i) in schedules"
+            :key="i"
+          >
+            <div slot="header"><span class="display-1">{{schedule.location}}</span> - <h3>{{moment(schedule.date).format('MMMM Do YYYY')}}</h3></div>
+            <v-card class="elevation-5">
+              <v-card-text class="headline">Meeting Leader {{schedule.meetingLeader }} </v-card-text>
+              <v-card-text class="headline">Worship Leader {{schedule.worshipLeader }} </v-card-text>
+              <v-card-text class="headline">Teacher {{schedule.teacher }} </v-card-text>
+              <v-card-text class="headline">Busy Bees {{schedule.busyBees }} </v-card-text>
+              <v-card-text class="headline">Nursery {{schedule.nursery }} </v-card-text>
+              <v-card-text class="headline">Logistics {{schedule.logistics }} </v-card-text>
+              <img src="src/assests/greenTree.jpg" alt="">
 
-        <v-card-title primary-title>
-          <div>
-            <h3 class="headline mb-0">Calendar</h3>
-            <div>Located two hours south of Sydney in the <br>Southern Highlands of New South Wales, ...</div>
-          </div>
-        </v-card-title>
+            </v-card>
+          </v-expansion-panel-content>
+        </v-expansion-panel>
+      </v-flex>
+    </v-layout>
+    <v-container>
 
-        <v-card-actions>
-          <v-btn flat color="orange">Share</v-btn>
-          <v-btn flat color="orange">Explore</v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-flex>
-  </v-layout>
+    </v-container>
+  </v-container>
 </template>
 
-
 <script>
+import { http } from "../config/http.js"
+import moment from 'moment'
+
   export default {
-    data () {
-      return {
-        card_text: 'Lorem ipsum dolor sit amet, brute iriure accusata ne mea. Eos suavitate referrentur ad, te duo agam libris qualisque, utroque quaestio accommodare no qui. Et percipit laboramus usu, no invidunt verterem nominati mel. Dolorem ancillae an mei, ut putant invenire splendide mel, ea nec propriae adipisci. Ignota salutandi accusamus in sed, et per malis fuisset, qui id ludus appareat.'
-      }
+    data: ()  => ({
+      schedules: []
+    }),
+    methods: {
+      // Load all Schedules from database
+      load() {
+            http
+                .get("schedules")
+                .then(response => {
+                    this.schedules = response.data.schedules;
+                })
+                .catch(e => {
+                    this.errors.push(e);
+                });
+        },
+      moment: function (date) {
+        return moment(date);
+      },
+    },
+    mounted() {
+      this.load();
     }
   }
 </script>
+
+<style scoped>
+
+</style>

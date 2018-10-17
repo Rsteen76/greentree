@@ -1,8 +1,11 @@
 <template>
-<div class="">
-  <v-toolbar id="navbar" dense :fixed=false >
+<div class="topnav">
+  <v-toolbar fixed dense>
     <v-toolbar-side-icon></v-toolbar-side-icon>
     <v-toolbar-title>Title</v-toolbar-title>
+    <v-spacer></v-spacer>
+    <v-text class="title"><strong>Next Meeting {{moment(schedules[1].date).format('MMMM Do YYYY') }} in {{schedules[1].location}}</strong></v-text>
+
     <v-spacer></v-spacer>
     <v-toolbar-items class="hidden-sm-and-down">
       <v-btn href="/#/users" flat>Admin</v-btn>
@@ -14,43 +17,38 @@
 </template>
 
 <script>
+  import { http } from "../config/http.js"
+  import moment from 'moment'
+
+
   export default {
-    name: 'Component',
-
-    data() {
-      return {
-        navbar: document.getElementById("navbar"),
-        sticky: false
-      };
-    },
+    data: ()  => ({
+      schedules: [],
+      date: ""
+    }),
     methods: {
-      handleScroll () {
-
-        this.scrolled = window.scrollY > 0;
-        console.log(navbar);
-        console.log(navbar.getBoundingClientRect());
-        if (navbar(screenY) <= 0) {
-          this.sticky="false";
-        } else {
-          this.sticky="false";
-        }
-        
+      // Load all Schedules from database
+      load() {
+            http
+                .get("schedules")
+                .then(response => {
+                    this.schedules = response.data.schedules;
+                })
+                .catch(e => {
+                    this.errors.push(e);
+                });
+        },
+      moment: function (date) {
+        return moment(date);
       },
-      myFunction() {
-        
-      }
     },
-    created: function() {
-    window.addEventListener('scroll', this.handleScroll);
-    },
-    destroyed: function () {
-    window.removeEventListener('scroll', this.handleScroll);
+    mounted() {
+      this.load();
     }
-
-  };
+  }
 </script>
 
-<style lang="stylus">
+<style>
 
 
 

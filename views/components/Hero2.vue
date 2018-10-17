@@ -1,5 +1,5 @@
 <template>
-  <v-carousel id = "heroCarousel" hide-delimiters hide-controls>
+  <v-carousel id = "heroCarousel" hide-delimiters hide-controls mt5>
     <v-carousel-item
       v-for="(item,i) in items"
       :key="i"
