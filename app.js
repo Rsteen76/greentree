@@ -8,6 +8,7 @@ const cors                = require('cors')
 const morgan              = require('morgan');
 const trunks              = require('trunks-log')
 const fs                  = require('fs');
+const session = require('express-session');
 const jwt                 = require('jsonwebtoken');
 const passport            = require('passport');
 const passportJWT         = require('passport-jwt');
@@ -18,8 +19,15 @@ jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeaderWithScheme('jwt');
 jwtOptions.secretOrKey    = 'movieratingapplicationsecretkey';
 const app                 = express();
 
-
 app.use(cors())
+// app.use(session({
+//   secret: config.SECRET,
+//   resave: true,
+//   saveUninitialized: true,
+//   cookie: { httpOnly: false }
+// }))
+app.use(passport.initialize());
+app.use(passport.session());
 const logs = new trunks('', 'yellow', '')
 
 // const index = require('./src/routes/index');

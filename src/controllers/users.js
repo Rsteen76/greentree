@@ -1,9 +1,8 @@
 //import the User constant explicitly
-const {
-  User
-} = require('../database/models')
+const { User } = require('../database/models')
 const trunks = require('trunks-log')
 const log = new trunks('USERS')
+const LocalStrategy = require('passport-local').Strategy;
 
 //show all users
 exports.index = async (req, res) => {
@@ -108,6 +107,7 @@ exports.update = async (req, res) => {
     })
 }
 
+// register a new user
 exports.register = async (req, res) => {
 const name = req.body.name;
 const email = req.body.email;

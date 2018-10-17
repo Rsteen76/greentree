@@ -1,5 +1,6 @@
 //Here is where we declare the modules and shit we will need
 const express = require('express')
+const passport = require('passport');
 
 //import the controllers and middleware
 const { usersController } = require('../controllers/index')
@@ -9,7 +10,7 @@ const { catchErrors } = require('../middleware/error-handler')
 const router = express.Router()
 
 //get all users
-router.get('/', catchErrors(usersController.index))
+router.get('/', passport.authenticate('jwt', { session: false }), catchErrors(usersController.index))
 
 //make a new boy
 router.post('/', catchErrors(usersController.store))
