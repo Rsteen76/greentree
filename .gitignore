@@ -1,9 +1,9 @@
 .env
-
+build.js
 .DS_Store
 node_modules/
 build.js
-npm-debug.log
+npm-debug.logs
 yarn-error.log
 
 # Editor directories and files
