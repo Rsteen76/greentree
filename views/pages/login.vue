@@ -23,38 +23,40 @@
   </v-container>
 </template>
 <script>
-import { http } from "../config/http.js"
+import { http } from "../config/http.js";
 
 export default {
   data: () => ({
     valid: true,
     user: {
-        email: '',
-        password: '',
+      email: "",
+      password: ""
     },
     emailRules: [
-      v => !!v || 'E-mail is required',
-      v => /\S+@\S+\.\S+/.test(v) || 'E-mail must be valid',
-    ],
+      v => !!v || "E-mail is required",
+      v => /\S+@\S+\.\S+/.test(v) || "E-mail must be valid"
+    ]
   }),
   methods: {
     submit() {
       http
-        .post("/users/login", this.user)
-        .then((response) => {
-            window.localStorage.setItem('auth', response.data.token);
-            this.$swal('Great!', 'You are ready to start!', 'success');
-            this.$router.push({ name: 'Home' });
+        .post("/auth/login", this.user)
+        .then(response => {
+          window.localStorage.setItem("auth", response.data.token);
+          window.localStorage.setItem("name", response.data.name);
+          this.$swal("Great!", "You are ready to start!", "success");
+          this.$router.push({ name: "greentree" });
         })
-        .catch((error) => {
-            const message = error.response.data.message;
-            this.$swal('Oh oo!', `${message}`, 'error');
-            this.$router.push({ name: 'Login' });
+        .catch(error => {
+          console.log(error);
+          const message = error.response.data.message;
+          this.$swal("Oh oo!", `${message}`, "error");
+          this.$router.push({ name: "Login" });
         });
-        },
-      clear() {
-      this.$refs.form.reset();
     },
-  },
+    clear() {
+      this.$refs.form.reset();
+    }
+  }
 };
 </script>

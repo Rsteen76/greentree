@@ -1,25 +1,37 @@
 const express = require('express')
-
-//import the controllers and middleware
 const { schedulesController } = require('../controllers/index')
 const { catchErrors } = require('../middleware/error-handler')
+var passport = require('passport');
+require('../config/passport')(passport);
 
-//set up the router
+//Set up the router
 const router = express.Router()
 
-//get all schedules
+//Get all schedules
 router.get('/', catchErrors(schedulesController.index))
 
-//make a new boy
-router.post('/', catchErrors(schedulesController.store))
+//Make a new Schedule
+router.post('/', passport.authenticate('jwt', { session: false}), function(req, res) {
+    var token = getToken(req.headers);
+    if (token) {schedulesController.store} else {
+        return res.status(403).send({success: false, msg: 'Unauthorized.'});
+    }})
 
-//see one boy
+//Show a Schedule
 router.get('/:id', catchErrors(schedulesController.show))
 
-//get rid of a boy
-router.delete('/:id', catchErrors(schedulesController.delete))
+//Delete Schedule
+router.delete('/:id', passport.authenticate('jwt', { session: false}), function(req, res) {
+    var token = getToken(req.headers);
+    if (token) {schedulesController.delete} else {
+        return res.status(403).send({success: false, msg: 'Unauthorized.'});
+    }})
 
-//update a boy
-router.put('/:id', catchErrors(schedulesController.update))
+//Update a schedule
+router.put('/:id',passport.authenticate('jwt', { session: false}), function(req, res) {
+    var token = getToken(req.headers);
+    if (token) {schedulesController.update} else {
+        return res.status(403).send({success: false, msg: 'Unauthorized.'});
+    }})
 
 module.exports = router

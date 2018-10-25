@@ -2,10 +2,12 @@
 const { Schedule } = require('../database/models')
 const trunks = require('trunks-log')
 const log = new trunks('SCHEDULES')
+var passport = require('passport');
+var jwt = require('jsonwebtoken');
+require('../config/passport')(passport);
 
 //show all schedules
-exports.index = async (req, res) => {
-  
+exports.index =  async (req, res) => {
   //query the DB of all schedules
   await Schedule.find().exec()
   .then(schedules => {
@@ -16,13 +18,11 @@ exports.index = async (req, res) => {
     log.error(err, 'Could not retrieve schedules: {}', err.message)
     res.json({ error: err, message: "Could not retrieve schedules"}).status(500)
   })
-}
+} 
 
 //Store a new schedule
 exports.store = async (req, res) => {
-  
   let schedule = new Schedule(req.body)
-
   //save it in the DB
   await schedule.save()
     .then(schedule => {
@@ -40,7 +40,7 @@ exports.store = async (req, res) => {
 //this function is for looking at one schedule by their mongo id
 exports.show = async (req, res) => {
 
-  //find this sneaky boye
+  //Find a schedule
   await schedule.findById(req.params.id).exec()
   .then(schedule => {
     log.success('Found schedule: {}', schedule.name)
@@ -52,9 +52,8 @@ exports.show = async (req, res) => {
   })
 }
 
-//ever wanted to make the schedules disappear 
+//Delete a Schedule 
 exports.delete = async (req, res) => {
-
   //find the sneaky boye and make him go away
   await Schedule.findByIdAndRemove(req.params.id).exec()
   .then(() => {
@@ -66,10 +65,9 @@ exports.delete = async (req, res) => {
     log.error(err, 'Error finding schedule: {}', req.params.id)
     res.status(500).json({err: err})
   })
-
 }
 
-//edit a schedule based on ID
+//Edit a schedule based on ID
 exports.update = async (req, res) => {
   await Schedule
   .findByIdAndUpdate(req.params.id, req.body, { new: true })
@@ -83,3 +81,5 @@ exports.update = async (req, res) => {
       res.status(500).json({err: err})
     })
 }
+
+

@@ -1,26 +1,15 @@
 <template>
+<v-app>
 <router-view></router-view>
+</v-app>
 </template>
 
 <script>
-// @ is an alias to /src
-// import Nav from '../components/Nav.vue'
-// import Hero2 from '../components/Hero2.vue'
-// import About from '../components/About.vue'
-// import Quotes from '../components/Quotes.vue'
-// import Children from '../components/Children.vue'
-// import Calendar from '../components/Calendar.vue'
+
 
 export default {
   name: 'home',
-  // components: {
-  //   Nav,
-  //   Hero2,
-  //   About,
-  //   Quotes,
-  //   Children,
-  //   Calendar
-  // }
+
 }
 </script>
 <style>

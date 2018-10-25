@@ -1,8 +1,11 @@
 //import the User constant explicitly
-const { User } = require('../database/models')
+var mongoose = require('mongoose');
+var passport = require('passport');
+require('../config/passport')(passport);
+var jwt = require('jsonwebtoken');
+const {User} = require('../database/models')
 const trunks = require('trunks-log')
 const log = new trunks('USERS')
-const LocalStrategy = require('passport-local').Strategy;
 
 //show all users
 exports.index = async (req, res) => {
@@ -50,7 +53,7 @@ exports.store = async (req, res) => {
 //this function is for looking at one user by their mongo id
 exports.show = async (req, res) => {
 
-  //find this sneaky boye
+  //Find Schedule
   await User.findById(req.params.id).exec()
     .then(user => {
       log.success('Found user: {}', user.name)
@@ -67,7 +70,7 @@ exports.show = async (req, res) => {
     })
 }
 
-//ever wanted to make the users disappear 
+//ever wanted to make the users disappear
 exports.delete = async (req, res) => {
 
   //find the sneaky boye and make him go away
@@ -107,59 +110,4 @@ exports.update = async (req, res) => {
     })
 }
 
-// register a new user
-exports.register = async (req, res) => {
-const name = req.body.name;
-const email = req.body.email;
-const password = req.body.password;
-const newUser = new User({
-  name,
-  email,
-  password,
-});
-
-User.createUser(newUser, (error, user) => {
-  if (error) {
-    res.status(422).json({
-      message: 'Something went wrong. Please try again after some time!',
-    });
-  }
-  res.send({
-    user
-  });
-});
-}
-
-// login a user
-exports.login = async (req, res) => {
-  if (req.body.email && req.body.password) {
-    const email = req.body.email;
-    const password = req.body.password;
-    User.getUserByEmail(email, (err, user) => {
-      if (!user) {
-        res.status(404).json({
-          message: 'The user does not exist!'
-        });
-      } else {
-        User.comparePassword(password, user.password, (error, isMatch) => {
-          if (error) throw error;
-          if (isMatch) {
-            const payload = {
-              id: user.id
-            };
-            const token = jwt.sign(payload, jwtOptions.secretOrKey);
-            res.json({
-              message: 'ok',
-              token
-            });
-          } else {
-            res.status(401).json({
-              message: 'The password is incorrect!'
-            });
-          }
-        });
-      }
-    });
-  }
-};
 

@@ -17,18 +17,18 @@ const ExtractJwt          = passportJWT.ExtractJwt;
 const JwtStrategy         = passportJWT.Strategy;
 const jwtOptions          = {}
 jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeaderWithScheme('jwt');
-jwtOptions.secretOrKey    = 'movieratingapplicationsecretkey';
+jwtOptions.secretOrKey    = 'LoveNeverFails';
 const app                 = express();
 
 app.use(cors())
 // app.use(session({
-//   secret: config.SECRET,
+//   secret: process.env.SECRET,
 //   resave: true,
 //   saveUninitialized: true,
 //   cookie: { httpOnly: false }
 // }))
-app.use(passport.initialize());
-app.use(passport.session());
+// app.use(passport.initialize());
+// app.use(passport.session());
 const logs = new trunks('', 'yellow', '')
 
 // const index = require('./src/routes/index');
