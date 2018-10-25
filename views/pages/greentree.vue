@@ -1,27 +1,25 @@
 <template>
   <div class="home">
-    <Nav/>
-    <Hero2 />
-    <div class="bgimg-1">
-      <div>
+    <Nav py-5 />
+    <v-parallax 
+      height="100%"
+      src="../assets/tree.jpg">
+      <v-container fluid>
+      <v-layout align-center justify-center>
+        <Hero2 />
+      </v-layout>
+      <v-layout align-center justify-center py-5>
         <About />
-      </div>
-    </div>
-    <div class="bgimg-2">
-      <div>
+      </v-layout>
         <Quotes />
-      </div>
-    </div>
-    <div class="bgimg-3">
-      <div>
+      <v-layout align-center justify-center py-5>
         <Children />
-      </div>
-    </div>
-    <div class="bgimg-1">
-      <div>
+      </v-layout>
+      <v-layout align-center justify-center py-5>
         <Calendar />
-      </div>
-    </div>
+      </v-layout>
+      </v-container>
+    </v-parallax>
   </div>
 </template>
 
@@ -42,21 +40,13 @@ export default {
     About,
     Quotes,
     Children,
-    Calendar
+    Calendar,
   }
 }
 </script>
 <style>
-.bgimg-1, .bgimg-2, .bgimg-3 {
-  position: relative;
-  opacity: 1;
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
 
-}
-.bgimg-2 {
+/* .bgimg-2 {
   background-image: url("https://images.unsplash.com/photo-1463595709917-93fb36118407?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=3e058f4f463e321effdbc2a75fdad68d&auto=format&fit=crop&w=1350&q=80");
   min-height: 100%;
 }
@@ -67,48 +57,26 @@ export default {
 }
 
 .bgimg-3 {
-  background-image: url("https://images.unsplash.com/photo-1533234335389-ccaf6c88603d?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a35a4c99f0a531c3deba29b9505867fd&auto=format&fit=crop&w=500&q=60");
+  background-image: url("https://images.unsplash.com/photo-1540275041090-440decb40159?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a65ba6ed82dfcbcf5850cfdb0a15127e&auto=format&fit=crop&w=2739&q=80");
   min-height: 400px;
-}
-
-.caption {
-  position: absolute;
-  left: 0;
-  top: 50%;
-  width: 100%;
-  text-align: center;
-  color: #000;
-}
-
-.caption span.border {
-  background-color: #111;
-  color: #fff;
-  padding: 18px;
-  font-size: 25px;
-  letter-spacing: 10px;
-}
-
-h3 {
-  letter-spacing: 5px;
-  text-transform: uppercase;
-  font: 20px "Lato", sans-serif;
-  color: #111;
-}
-.sticky {
-    position: -webkit-sticky; /* Safari */
-    position: sticky;
-    top: 0;
-}
-
-/* Turn off parallax scrolling for tablets and phones */
-/* @media only screen and (max-device-width: 1024px) {
-    .bgimg-1, .bgimg-2, .bgimg-3 {
-        background-attachment: scroll;
-    }
 } */
-.topnavs {
-  position: -webkit-sticky;
-  position: sticky !important;
+.parallax {
+  perspective: 1px;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.parallax__layer {
+  position: absolute;
   top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+.parallax__layer--base {
+  transform: translateZ(10);
+}
+.parallax__layer--back {
+  transform: translateZ(-1px);
 }
 </style>

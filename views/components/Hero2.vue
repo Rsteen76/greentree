@@ -1,11 +1,11 @@
 <template>
-  <v-carousel id = "heroCarousel" hide-delimiters hide-controls mt5>
+  <v-carousel id = "heroCarousel" hide-delimiters hide-controls mt3>
     <v-carousel-item
       v-for="(item,i) in items"
       :key="i"
       :src="item.src"
       reverse-transition="fade"
-      transition="fade"
+      transition="slide"
     ></v-carousel-item>
   </v-carousel>
 </template>
@@ -37,14 +37,14 @@
   #heroCarousel
 
   .image
-    height: 15vh;
+    height: 40vh !important;
     widows: 100vw;
     overflow: hidden;
     position: relative;
 
     .fade
       &-enter-active, &-leave-active, &-leave-to
-        transition: .3s ease-out
+        transition: 1s ease-out
         position: absolute
         top: 0
         left: 0

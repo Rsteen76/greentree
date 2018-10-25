@@ -3,7 +3,6 @@ var passport = require('passport');
 require('../config/passport')(passport);
 var jwt = require('jsonwebtoken');
 const {User} = require('../database/models')
-var settings = require('../config/settings'); // get settings file
 
 const trunks = require('trunks-log')
 const log = new trunks('USERS')

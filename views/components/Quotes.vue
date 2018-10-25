@@ -11,7 +11,6 @@
       transition="fade"
     ></v-carousel-item>
   </v-carousel>
-
 </div>
 </template>
 
@@ -37,10 +36,10 @@
     }
   }
 </script>
-<style lang="stylus">
+<style lang="stylus" scoped>
   #greenBlur
   .image
-    height: 20vh;
+    height: 30vh;
     widows: 100vw;
     overflow: hidden;
     position: relative;
@@ -56,7 +55,7 @@
 
   .fade
     &-enter-active, &-leave-active, &-leave-to
-      transition: .3s ease-out
+      transition: .8s ease-out
       position: absolute
       top: 0
       left: 0
