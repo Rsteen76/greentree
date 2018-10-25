@@ -9,7 +9,9 @@
       <v-spacer></v-spacer>
 
       <v-toolbar-items  class="hidden-sm-and-down">
-        <v-btn v-if="!name" href="/#/login" flat>Login</v-btn>
+        <v-btn v-if="!name" to='/login' flat>Login
+          
+        </v-btn>
       </v-toolbar-items>
       <template v-if="auth">
       <v-menu :nudge-width="100">
@@ -45,11 +47,11 @@
       items: [
         { 
           title: "Schedules", 
-          path: "schedules",
+          path: "/schedules",
         },
         {
           title: "People",
-          path: "users",
+          path: "/users",
         }, 
       ],
       schedules: [],

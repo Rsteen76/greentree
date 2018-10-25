@@ -15,7 +15,7 @@
               <v-card-text class="headline">Busy Bees {{schedule.busyBees }} </v-card-text>
               <v-card-text class="headline">Nursery {{schedule.nursery }} </v-card-text>
               <v-card-text class="headline">Logistics {{schedule.logistics }} </v-card-text>
-              <img src="src/assests/greenTree.jpg" alt="">
+              <img src="" alt="">
 
             </v-card>
           </v-expansion-panel-content>

@@ -32,6 +32,7 @@ import Quotes from '../components/Quotes.vue'
 import Children from '../components/Children.vue'
 import Calendar from '../components/Calendar.vue'
 
+
 export default {
   name: 'home',
   components: {

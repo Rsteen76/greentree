@@ -57,7 +57,7 @@ export default {
     submit() {
       if (this.$refs.form.validate()) {
         http
-          .post("/users/register", this.user)
+          .post("auth/register", this.user)
           .then(() => {
             this.$swal(
               'Great!',

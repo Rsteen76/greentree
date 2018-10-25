@@ -81,7 +81,7 @@ export default {
         {
           icon: "home",
           title: "Home",
-          href: "/#/home",
+          href: "/#/",
           router: true
         },
         {
