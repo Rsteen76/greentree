@@ -1,7 +1,5 @@
 var JwtStrategy = require('passport-jwt').Strategy,
     ExtractJwt = require('passport-jwt').ExtractJwt;
-var passport = require('passport');
-
 
 // load up the user model
 var User = require('../database/models/user');

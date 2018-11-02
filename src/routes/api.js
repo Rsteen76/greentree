@@ -20,7 +20,7 @@ router.use('/users', passport.authenticate('jwt', { session: false}), function(r
     var token = getToken(req.headers);
     if (token) {userRoutes} else {
         return res.status(403).send({success: false, msg: 'Unauthorized.'});
-    }}) 
+    }}, userRoutes) 
 
 router.use('/schedules', scheduleRoutes);
 

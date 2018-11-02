@@ -97,7 +97,7 @@ export default {
     //load all users from DB, we call this often to make sure the data is up to date
     load() {
       http
-        .get("users")
+        .get("users", localStorage.auth)
         .then(response => {
           this.users = response.data.users;
         })
