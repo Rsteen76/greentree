@@ -42,8 +42,9 @@ export default {
       http
         .post("/auth/login", this.user)
         .then(response => {
-          window.localStorage.setItem("auth", response.data.token);
-          window.localStorage.setItem("name", response.data.name);
+          console.log(response.data)
+          localStorage.setItem("auth", response.data.token);
+          localStorage.setItem("name", response.data.name);
           this.$swal("Great!", "You are ready to start!", "success");
           this.$router.push({ name: "greentree" });
         })

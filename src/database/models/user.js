@@ -1,35 +1,28 @@
-const mongoose = require('mongoose');
-const bcryptjs = require('bcryptjs');
+const mongoose = require('mongoose')
+const bcrypt = require('bcrypt-nodejs')
 
-const Schema = mongoose.Schema;
-const UserSchema = new Schema({
-  name: String,
+const UserSchema = mongoose.Schema({
+  name: {
+    type: String,
+    unique: true,
+    required: true
+  },
   email: String,
-  password: String,
+  password: String
 });
 
-const User = mongoose.model('User', UserSchema);
-module.exports = User;
-
-module.exports.createUser = (newUser, callback) => {
-    bcryptjs.genSalt(10, (err, salt) => {
-      bcryptjs.hash(newUser.password, salt, (error, hash) => {
-        // store the hashed password
-        const newUserResource = newUser;
-        newUserResource.password = hash;
-        newUserResource.save(callback);
-      });
-    });
-  };
-
-  module.exports.getUserByEmail = (email, callback) => {
+ UserSchema.methods.getUserByEmail = (email, callback) => {
     const query = { email };
     User.findOne(query, callback);
   };
 
-  module.exports.comparePassword = (candidatePassword, hash, callback) => {
-    bcryptjs.compare(candidatePassword, hash, (err, isMatch) => {
-      if (err) throw err;
-      callback(null, isMatch);
-    });
-  };
+UserSchema.methods.comparePassword = function (passw, cb) {
+  console.log('Comaparing Passwords')
+  bcrypt.compare(passw, this.password, function (err, isMatch) {
+    if (err) {
+      return cb(err);
+    }
+    cb(null, isMatch);
+  });
+};
+module.exports = mongoose.model('User', UserSchema);

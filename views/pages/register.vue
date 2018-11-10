@@ -57,14 +57,17 @@ export default {
     submit() {
       if (this.$refs.form.validate()) {
         http
-          .post("auth/register", this.user)
-          .then(() => {
+          .post("/auth/register", this.user)
+          .then((response) => {
+            console.log(response)
+            window.localStorage.setItem("auth", response.data.token);
+            window.localStorage.setItem("name", response.data.name);
             this.$swal(
               'Great!',
               'You have been successfully registered!',
               'success',
             );
-            this.$router.push({ name: 'Login' });
+            this.$router.push({ name: 'greentree' });
           })
           .catch((error) => {
             const message = error.message;

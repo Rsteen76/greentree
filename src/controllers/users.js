@@ -1,8 +1,4 @@
 //import the User constant explicitly
-var mongoose = require('mongoose');
-var passport = require('passport');
-require('../config/passport')(passport);
-var jwt = require('jsonwebtoken');
 const {User} = require('../database/models')
 const trunks = require('trunks-log')
 const log = new trunks('USERS')
@@ -53,7 +49,7 @@ exports.store = async (req, res) => {
 //this function is for looking at one user by their mongo id
 exports.show = async (req, res) => {
 
-  //Find Schedule
+  //Find User
   await User.findById(req.params.id).exec()
     .then(user => {
       log.success('Found user: {}', user.name)

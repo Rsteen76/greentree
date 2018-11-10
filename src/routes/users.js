@@ -1,27 +1,26 @@
 //Here is where we declare the modules and shit we will need
 const express = require('express')
-const passport = require('passport');
-
 //import the controllers and middleware
-const { usersController } = require('../controllers/index')
-const { catchErrors } = require('../middleware/error-handler')
+const  { usersController }  = require('../controllers/index')
+const  { catchErrors }  = require('../middleware/error-handler')
+const checkAuth = require('../middleware/check-auth')
 
 //set up the router
 const router = express.Router()
 
-//get all users //passport.authenticate('jwt', { session: false }),
-router.get('/',  catchErrors(usersController.index))
+//get all users 
+router.get('/', catchErrors(usersController.index))
 
-//make a new boy
+//make a new schedule
 router.post('/', catchErrors(usersController.store))
 
-//see one boy
+//see one schedule
 router.get('/:id', catchErrors(usersController.show))
 
-//get rid of a boy
+//get rid of a schedule
 router.delete('/:id', catchErrors(usersController.delete))
 
-//update a boy
+//update User
 router.put('/:id', catchErrors(usersController.update))
 
 module.exports = router

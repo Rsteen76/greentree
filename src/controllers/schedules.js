@@ -2,9 +2,6 @@
 const { Schedule } = require('../database/models')
 const trunks = require('trunks-log')
 const log = new trunks('SCHEDULES')
-var passport = require('passport');
-var jwt = require('jsonwebtoken');
-require('../config/passport')(passport);
 
 //show all schedules
 exports.index =  async (req, res) => {

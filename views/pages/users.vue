@@ -97,13 +97,14 @@ export default {
     //load all users from DB, we call this often to make sure the data is up to date
     load() {
       http
-        .get("users", localStorage.auth)
+        .get("/users/", { headers: { 'Authorization': 'Bearer ' + localStorage.auth }})
         .then(response => {
           this.users = response.data.users;
         })
         .catch(e => {
+          'Getting error before Server'
           this.errors.push(e);
-        });
+        })
     },
 
     //opens delete dialog

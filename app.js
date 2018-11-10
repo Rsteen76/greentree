@@ -1,34 +1,15 @@
 const express             = require('express');
 const path                = require('path');
-const moment              = require('moment');
-const favicon             = require('serve-favicon');
 const cookieParser        = require('cookie-parser');
 const bodyParser          = require('body-parser');
 const mongoose            = require('mongoose');
 const cors                = require('cors')
 const morgan              = require('morgan');
 const trunks              = require('trunks-log')
-const fs                  = require('fs');
-const session             = require('express-session');
-const jwt                 = require('jsonwebtoken');
-const passport            = require('passport');
-const passportJWT         = require('passport-jwt');
-const ExtractJwt          = passportJWT.ExtractJwt;
-const JwtStrategy         = passportJWT.Strategy;
-const jwtOptions          = {}
-jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeaderWithScheme('jwt');
-jwtOptions.secretOrKey    = 'LoveNeverFails';
 const app                 = express();
 
 app.use(cors())
-// app.use(session({
-//   secret: process.env.SECRET,
-//   resave: true,
-//   saveUninitialized: true,
-//   cookie: { httpOnly: false }
-// }))
-// app.use(passport.initialize());
-// app.use(passport.session());
+
 const logs = new trunks('', 'yellow', '')
 
 // const index = require('./src/routes/index');
@@ -47,14 +28,6 @@ mongoose.connect(process.env.MONGO_URI, { useMongoClient: true }, () => {
 
 // Fail on connection error.
 mongoose.connection.on('error', error => { throw error });
-
-// Include controllers
-// fs.readdirSync("controllers").forEach(function (file) {
-//   if(file.substr(-3) == ".js") {
-//     const route = require("../src/controllers/" + file)
-//     route.controller(app)
-//   }
-// })
 
 // uncomment after placing your favicon in /public
 // app.use(favicon(path.join(__dirname, 'public', 'apple.jpg')));
